@@ -1,0 +1,346 @@
+@import '../../index.scss';
+
+header {
+    background: $headerBg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 33;
+
+    .container {
+        max-width: 1096px;
+        padding: 0 1rem;
+        margin: 0 auto;
+
+
+        display: grid;
+        grid-template-areas: 'logo menu search cart';
+        align-items: center;
+        justify-content: space-between;
+        color: $textColor;
+        background-color: $headerBg;
+        z-index: 33;
+
+        .burgerMenu {
+            display: none;
+        }
+
+
+
+        .logo {
+            grid-area: logo;
+            display: block;
+            width: 84px;
+
+            cursor: pointer;
+
+            & img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+
+        nav {
+            grid-area: menu;
+            display: flex;
+
+            .item {
+                position: relative;
+                padding: 1rem 1.2rem;
+                list-style: none;
+                cursor: pointer;
+                color: $textColor;
+
+                .dropdown {
+                    position: absolute;
+                    top: 100%;
+                    display: none;
+                    left: 0;
+                    background-color: $black;
+                    padding: 1rem 0;
+
+                    li {
+                        position: relative;
+                        line-height: 2;
+                        list-style: none;
+                        padding: 0 1.5rem;
+                        display: block;
+                        width: max-content;
+
+                        color: $textColor;
+
+                        &:hover {
+                            color: $hoverText;
+                        }
+                    }
+                }
+
+                &:hover {
+                    background-color: $black;
+                    color: $hoverText;
+
+                    &::after {
+                        content: "";
+                        display: block;
+                        height: 10px;
+                        width: 10px;
+                        background: rgba(0, 0, 0, 0) url(https://jabko.ua/catalog/view/theme/black_app/image/arrow_white.svg) no-repeat scroll 0 0/6px auto;
+                        position: absolute;
+                        right: .2rem;
+                        top: 50%;
+                        transform: translateY(-50%) rotate(-90deg);
+                    }
+
+                }
+
+                &:hover .dropdown {
+                    display: block;
+                }
+
+
+
+            }
+
+            .line {
+                position: relative;
+                width: 1px;
+                background-color: $textColor;
+            }
+        }
+
+        .right {
+            grid-area: search;
+            display: flex;
+            align-items: center;
+
+
+            .search {
+                position: relative;
+                cursor: pointer;
+
+
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    left: 10px;
+                    transform: translate(-5px, -50%);
+                }
+
+                input {
+                    padding: .5rem 2rem;
+                    background-color: $headerBg;
+                    border: none;
+                    width: 100%;
+                    outline: none;
+                    caret-color: $textColor;
+                    color: $textColor;
+                    line-height: 1rem;
+
+                }
+
+            }
+
+            .moduleSearch {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.248);
+                z-index: 33;
+
+                .searchContainer {
+                    background-color: $headerBg;
+                    padding: .6rem;
+
+                    .search {
+                        display: flex;
+                        align-items: center;
+
+                        .close {
+                            position: absolute;
+                            top: 50%;
+                            right: 10px;
+                            transform: translate(-5px, -50%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .cart_container {
+            grid-area: cart;
+            position: relative;
+
+            .cart {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                gap: .5rem;
+            }
+
+            .busket_empty {
+                position: absolute;
+                top: 2.5rem;
+                right: 0rem;
+                height: 0;
+                overflow: hidden;
+                transition: all .3s ease-in-out;
+
+                ._message {
+                    padding: 1rem 2rem;
+
+                    width: max-content;
+                    background-color: $cardBg;
+                }
+            }
+
+            &:hover {
+                .busket_empty {
+                    height: 3rem;
+                }
+            }
+        }
+
+        @media (max-width: 960px) {
+            display: flex;
+            padding: .5rem 1rem;
+
+
+            nav {
+                display: none;
+            }
+
+            .right {
+                gap: .5rem;
+
+                .burgerMenu {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 20;
+                }
+
+                .search {
+                    input {
+                        display: none;
+                    }
+                }
+
+                .moduleSearch {
+                    input {
+                        display: block;
+                    }
+                }
+            }
+
+            .cart {
+                span {
+                    display: none;
+                }
+            }
+        }
+
+    }
+
+    .menuContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.383);
+        transition: opacity .5s ease-in-out;
+    }
+
+    .openContainer {
+        transition: opacity .5s ease-in-out;
+        opacity: 1;
+    }
+
+    .closedContainer {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+
+    .mobileMenu {
+        position: absolute;
+        top: 0;
+        left: -100vw;
+
+        width: 285px;
+        height: 100vh;
+        padding: 0 .5rem 6rem;
+
+        background-color: $headerBg;
+        z-index: 25;
+        color: $hoverText;
+        transition: all .5s ease-in-out;
+
+        .header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: .8rem;
+
+            border-bottom: 1px solid $textColor;
+
+            .logo {
+                width: 52px;
+            }
+
+            .close {
+                position: absolute;
+                right: 10px;
+            }
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem .5rem;
+
+                div {
+                    display: block;
+
+                    span {
+                        display: block;
+                        font-size: .7rem;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 960px) {
+            display: none;
+        }
+
+        .mobileMenuList {
+
+            li {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 1rem .5rem;
+            }
+        }
+
+    }
+
+
+    .openMobile {
+        left: 0;
+    }
+
+}

@@ -1,0 +1,71 @@
+@import '../../../../../index.scss';
+
+.box {
+    width: 25vw;
+
+
+}
+
+.news-item {
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    background-color: $headerBg;
+    // overflow: hidden;
+
+    .news-img {
+        width: 100%;
+        overflow: hidden;
+
+        // aspect-ratio: 1/1;
+        img {
+            width: 100%;
+            max-height: 290px;
+            object-fit: cover;
+            transition: all .5s ease-in-out;
+            scale: 1.05;
+        }
+
+        &:hover img {
+            scale: 1.1;
+        }
+    }
+
+    &__text {
+        // display: block;
+        padding: 1rem;
+    }
+
+    &__clamp {
+
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        // text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+    }
+
+    .bottom {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 0px;
+        overflow: hidden;
+        display: flex;
+        padding: 0rem;
+        justify-content: space-between;
+        transition: all .5s ease-in-out;
+
+        @media (max-width: 780px) {
+            position: relative;
+            height: fit-content;
+            padding: 0 1rem;
+        }
+    }
+
+    &:hover>.bottom {
+        background-color: $headerBg;
+        height: 1.5rem;
+        padding: 0 1rem;
+    }
+}

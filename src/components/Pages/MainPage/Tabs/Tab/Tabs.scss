@@ -1,0 +1,39 @@
+@import '../../../../../index.scss';
+
+.tabs {
+    max-width: 1098px;
+    padding: 0 1rem;
+    margin: 30px auto;
+
+    ul {
+
+        display: flex;
+        justify-content: space-evenly;
+
+        li {
+            width: 25%;
+            text-align: center;
+
+            label {
+                color: $textColor;
+                display: block;
+                padding: 1rem;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                border-bottom: 1px solid $textColor;
+
+            }
+
+            & input {
+                display: none;
+            }
+
+            & input[type="radio"]:checked~label {
+                color: $hoverText;
+                border-bottom: 1px solid $hoverText;
+
+            }
+        }
+    }
+}

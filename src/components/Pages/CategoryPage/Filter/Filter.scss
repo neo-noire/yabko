@@ -1,0 +1,81 @@
+@import '../../../../styles.scss';
+
+.filter {
+    background-color: $headerBg;
+    margin-bottom: .5rem;
+
+
+
+    button {
+        padding: 11px 20px 11px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background-color: transparent;
+        color: $hoverText;
+        outline: none;
+        border: none;
+        cursor: pointer;
+
+        svg {
+            transition: all .5s ease-in-out;
+        }
+    }
+}
+
+
+.content {
+    padding: 11px 20px 11px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content-parent {
+    height: 0px;
+    overflow: hidden;
+    transition: height ease 0.9s;
+}
+
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    color: $textColor;
+    cursor: pointer;
+    padding: .5rem;
+    input[type="checkbox"] {
+        display: none;
+        visibility: hidden;
+    }
+
+    .chbx-custom {
+        width: 17px;
+        height: 17px;
+        background-color: transparent;
+        border: 1px solid $textColor;
+        border-radius: 3px;
+
+        svg {
+            fill: transparent;
+        }
+    }
+
+    input[type="checkbox"]:checked {
+
+        &~.chbx-custom {
+            background-color: $hoverText;
+
+            svg {
+                fill: initial;
+            }
+        }
+
+        &~span {
+            color: $hoverText;
+        }
+    }
+}

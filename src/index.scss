@@ -1,0 +1,35 @@
+$textColor: #888;
+$hoverText: whitesmoke;
+$black: black;
+$headerBg: #0f0f0f;
+$cardBg: #1d1d1d;
+$buttonMain: #c42a2c;
+$buttonSub: #215bb1;
+$gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.8996848739495799) 35%, rgba(255, 255, 255, 1) 100%);
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1096px;
+    padding: 0 1rem;
+    margin: 0 auto;
+}

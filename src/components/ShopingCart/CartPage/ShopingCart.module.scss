@@ -1,0 +1,136 @@
+@import '../../../styles.scss';
+
+.container {
+    max-width: 1096px;
+    padding: 0 1rem;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.cart_content {
+    background-color: $cardBg;
+    padding: 2rem;
+    border-radius: .5rem;
+    display: flex;
+    gap: 2rem;
+
+    .order {
+        flex: 1;
+
+        h1 {
+            padding: 0 0 30px;
+            color: $hoverText;
+            font-size: 20px;
+            border-bottom: 1px solid $textColor;
+        }
+
+        .item {
+            position: relative;
+            display: flex;
+            padding: 1rem 2rem 1rem 0;
+            border-bottom: 1px solid $textColor;
+
+            & .item_img {
+                width: 124px;
+                margin-right: 1rem;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .item_info {
+                flex: 1;
+
+                .item_top {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+
+                .item_name {}
+
+                .quantity_block {
+                    margin-top: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    gap: .2rem;
+
+                    .icon {
+                        width: 24px;
+                        height: 24px;
+                        cursor: pointer;
+                    }
+
+                    .quantity {
+                        width: 24px;
+                        height: 24px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            button {
+                position: absolute;
+                right: 0;
+                top: 0;
+                transform: translateY(50%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                color: $hoverText;
+
+                svg {
+                    transition: all .5s ease-in-out;
+                }
+
+                &:hover {
+                    svg {
+                        scale: 1.2;
+                    }
+                }
+            }
+        }
+    }
+
+    .checkout {
+        height: max-content;
+        position: sticky;
+        top: 70px;
+        .buttons {
+            margin-top: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            button {
+                padding: .5rem;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                color: $hoverText;
+            }
+
+            .fast {
+                background-color: $buttonMain;
+
+                &:hover {
+                    box-shadow: 0 1px 5px 0 #d75e5e;
+                }
+            }
+
+            .cart {
+                background-color: $buttonSub;
+            }
+        }
+    }
+}

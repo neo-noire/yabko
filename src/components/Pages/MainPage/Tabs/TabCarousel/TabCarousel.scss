@@ -1,0 +1,13 @@
+.tab-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem 1rem;
+
+    .card-container {
+        width: calc(25% - 1rem);
+
+        @media (max-width: 720px) {
+            width: calc(33.333% - 1rem);
+        }
+    }
+}

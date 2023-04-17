@@ -1,0 +1,21 @@
+@import '../../index.scss';
+
+
+.footer {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 3rem;
+
+    ul {
+        li {
+            margin-top: 1rem;
+            color: $textColor;
+            cursor: pointer;
+
+            &:hover {
+                color: $hoverText;
+            }
+        }
+    }
+}

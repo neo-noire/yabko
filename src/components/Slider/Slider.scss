@@ -1,0 +1,88 @@
+@import '../../index.scss';
+
+.slider {
+    max-width: 1300px;
+    margin: 50px auto 0;
+    
+
+    .imgContainer {
+        max-height: 460px;
+        aspect-ratio: 9/6;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+
+
+.dots {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    gap: 1rem;
+
+    button {
+        width: 6px;
+        height: 6px;
+        outline: 0;
+        font-size: 0;
+
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: $textColor;
+        border: 1px solid $textColor;
+        transition: all .5s ease-in-out;
+
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: .2rem;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &.slick-active {
+            position: relative;
+            padding: .2rem;
+            border: 1px solid $textColor;
+            border-radius: 50%;
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: -7px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 7px;
+                height: 1px;
+                background-color: $textColor;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: -7px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 7px;
+                height: 1px;
+                background-color: $textColor;
+            }
+        }
+
+
+        &:hover button {
+
+            padding: .2rem;
+        }
+    }
+}
