@@ -30,9 +30,10 @@ export const ShopingCart = () => {
 
     const cartHandler = async () => {
         try {
-            const res = await axios.post("http://localhost:8080/create-payment-session", cart)
-            const url = res.data.url
-            window.location.assign(url)
+            const res = await axios.post(`${import.meta.env.VITE_FETCH_URL}`, cart, { headers: { 'Access-Control-Allow-Origin': '*' } })
+            console.log(res);
+            // const url = res.data.url
+            // window.location.assign(url)
         } catch (error) {
             console.log(error);
         }
