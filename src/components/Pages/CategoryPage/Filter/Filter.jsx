@@ -3,8 +3,8 @@ import './Filter.scss'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { Arrow } from '../../../../assets/Arrow'
 
-export const Filter = ({ label, children }) => {
-    const [open, setOPen] = useState(false);
+export const Filter = ({ label, children, isOpen }) => {
+    const [open, setOPen] = useState(false || isOpen);
 
     const toggle = () => {
         setOPen(!open)

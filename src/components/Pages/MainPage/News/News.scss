@@ -14,16 +14,22 @@
         padding-bottom: 2rem;
         gap: 1rem;
 
-        .box {
+        .animate__fadeInRightBig,
+        .animate__fadeInLeftBig {
             min-width: calc(25% - 1rem);
 
             @media (max-width: 780px) {
-                min-width: calc(45% - 1rem);
+                min-width: calc(33.3% - 1rem);
             }
 
             @media (max-width: 460px) {
-                min-width: calc(70% - 1rem);
+                min-width: calc(45% - 1rem);
             }
+        }
+
+        .box {
+            width: 100%;
+
         }
 
         @media (max-width: 780px) {

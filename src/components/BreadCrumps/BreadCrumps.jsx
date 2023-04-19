@@ -13,12 +13,12 @@ export const BreadCrumps = ({ data }) => {
             </NavLink>
             {
                 data.map((el, idx) =>
-                    <>
+                    <div key={el + idx}>
                         <MdKeyboardArrowRight />
                         <NavLink className={idx === data.length - 1 && s.active}>
                             {el}
                         </NavLink>
-                    </>
+                    </div>
                 )
             }
         </div>

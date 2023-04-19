@@ -29,7 +29,12 @@
                 display: none;
             }
 
-            & input[type="radio"]:checked~label {
+            // & input[type="radio"]:checked~label {
+            //     color: $hoverText;
+            //     border-bottom: 1px solid $hoverText;
+
+            // }
+            & input[type="radio"]:default ~label {
                 color: $hoverText;
                 border-bottom: 1px solid $hoverText;
 

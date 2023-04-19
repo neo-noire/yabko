@@ -1,12 +1,19 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 import './Slider.scss'
 
 export const ImageSlider = ({ sliderImages }) => {
+    const [imageList, setImageList] = useState([])
+
+
+    useEffect(() => {
+        setImageList(sliderImages)
+    }, [sliderImages])
+
     var settings = {
         dots: true,
         infinite: true,
-        speed: 0,
+        speed: 500,
         arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -14,18 +21,18 @@ export const ImageSlider = ({ sliderImages }) => {
         customPaging: function (i) {
             return (
                 <div className='slider_dot'>
-                    <img width={100} src={sliderImages[i]?.image?.asset?.url} />
+                    <img width={100} src={imageList[i]?.image?.asset?.url} />
                 </div>
             );
         },
     };
-    
+
     return (
         <>
             <div className='slider_container'>
                 <Slider {...settings}>
                     {
-                        sliderImages?.map(el =>
+                        imageList?.map(el =>
                             <div className='slider_img' key={el._key}>
                                 <img src={el?.image?.asset.url} alt={el?.alt} />
                             </div>)

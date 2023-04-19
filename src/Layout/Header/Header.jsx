@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import s from './Header.module.scss'
-import { FaShoppingCart } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { BsTelephone } from 'react-icons/bs'
 import { AiOutlineMail } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import { Search } from './Search'
+import { HeaderCart } from '../../components/ShopingCart/HeaderCart/HeaderCart'
 
 
 export const Header = () => {
-    const cart = useSelector(state => state.cart.items)
     const [openMenu, setOpenMenu] = useState(false)
-    const [cartOpen, setCartOpen] = useState(false)
-
-   
 
     return (
         <header>
@@ -34,27 +28,25 @@ export const Header = () => {
                         </div>
 
                         <ul className={s.mobileMenuList}>
-                            <NavLink>
-
+                            <NavLink to={'/iPhone'} onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> iPhone</li>
                             </NavLink>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
-                            <a href='/'>
-                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> Iphone</li>
-                            </a>
+                            <NavLink to={'/iPad'} onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/ipad.png' /> iPad</li>
+                            </NavLink>
+                            <NavLink to={'/Mac'} onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/mac.png' /> Mac</li>
+                            </NavLink>
+                            <NavLink to='/AirPods' onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/airpods.svg' /> AirPods</li>
+                            </NavLink>
+
+                            <NavLink to={'/Apple Watch'} onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/apple-watch.png' /> Apple Watch</li>
+                            </NavLink>
+                            <NavLink to='/Accessories' onClick={() => setOpenMenu(false)}>
+                                <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/power-adapter.png' /> Accessories</li>
+                            </NavLink>
                         </ul>
 
                         <div className={s.footer}>
@@ -151,23 +143,7 @@ export const Header = () => {
                 <NavLink className={s.logo} to='/'>
                     <img src='https://jabko.ua/image/catalog/123/logow.png' alt='Jabko Logo' />
                 </NavLink>
-
-                <div className={s.cart_container} >
-                    <NavLink className={s.cart} to={cart.length > 0 && '/cart'}>
-                        <FaShoppingCart size={20} />
-                        <span>
-                            Cart
-                        </span>
-                    </NavLink>
-                    {
-                        !cart.length > 0 &&
-                        <div className={s.busket_empty}>
-                            <div className={s._message}>
-                                Your buscket is empty
-                            </div>
-                        </div>
-                    }
-                </div>
+                <HeaderCart />
 
             </div >
         </header >

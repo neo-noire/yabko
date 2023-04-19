@@ -31,9 +31,8 @@ export const ShopingCart = () => {
     const cartHandler = async () => {
         try {
             const res = await axios.post(`${import.meta.env.VITE_FETCH_URL}`, cart, { headers: { 'Access-Control-Allow-Origin': '*' } })
-            console.log(res);
-            // const url = res.data.url
-            // window.location.assign(url)
+            const url = res.data.url
+            window.location.assign(url)
         } catch (error) {
             console.log(error);
         }
@@ -48,7 +47,7 @@ export const ShopingCart = () => {
                     </h1>
                     {
                         cart.map(el =>
-                            <div className={s.item}>
+                            <div key={el.name} className={s.item}>
                                 <div className={s.item_img}>
                                     <img src={el.img} alt={el.name} />
                                 </div>

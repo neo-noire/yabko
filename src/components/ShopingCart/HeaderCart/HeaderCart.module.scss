@@ -1,0 +1,64 @@
+@import '../../../styles.scss';
+
+.cart_container {
+    grid-area: cart;
+    position: relative;
+
+    .cart {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: .5rem;
+    }
+
+    .counter {
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: $textColor;
+        border: 1px solid $hoverText;
+        color: $hoverText;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .busket_empty {
+        position: absolute;
+        top: 2.5rem;
+        right: 0rem;
+        height: 0;
+        overflow: hidden;
+        transition: all .3s ease-in-out;
+
+        ._message {
+            padding: 1rem 2rem;
+
+            width: max-content;
+            background-color: $cardBg;
+        }
+    }
+
+    &:hover {
+        .busket_empty {
+            height: 3rem;
+        }
+    }
+
+    @media (max-width: 960px) {
+
+        .cart {
+            span {
+                display: none;
+            }
+        }
+    }
+}

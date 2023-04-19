@@ -1,6 +1,21 @@
 @import '../../index.scss';
 
+@keyframes appear {
+    0% {
+        transform: translateX(-100vw);
+        transform: rotateY(180deg);
+        opacity: 0;
+        
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+        transform: rotateY(0deg);
+    }
+}
+
 .slider {
+    animation: 1s ease-in-out 0s 1 appear;
     max-width: 1300px;
     margin: 50px auto 0;
     

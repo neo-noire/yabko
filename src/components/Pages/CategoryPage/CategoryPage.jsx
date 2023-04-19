@@ -73,6 +73,17 @@ export const CategoryPage = () => {
                             <FilterItem key={el[1]} filter={el[1]} handleFilter={handleFilter} objKey={el[0]} />
                         )}
                     </Filter>
+
+                    {
+                        Object.entries(filterDropdown).map(([key, val] = entry) =>
+                            <Filter key={key} label={key}>
+                                {
+                                    val.map(el =>
+                                        <FilterItem handleFilter={handleFilter} key={el} filter={el} objKey={key} />
+                                    )
+                                }
+                            </Filter>)
+                    }
                 </div>
             </div>
             <div className={mobFiltersOpen ? s.content + ' ' + s.freeze : s.content}>

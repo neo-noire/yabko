@@ -8,10 +8,69 @@
     display: flex;
     gap: 2rem;
     background-color: $cardBg;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: .5rem;
 
-    & .slider {}
+    & .slider {
+        width: 50%;
+    }
+
+    .mobile_title {
+        display: none;
+    }
+
+    .desctop_title {
+        display: block;
+    }
+
+    @media (max-width: 950px) {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 0;
+
+        .slider {
+            width: 100%;
+        }
+
+        .desctop_title {
+            display: none;
+        }
+
+        .mobile_title {
+            display: block;
+
+            ._title {
+                text-align: center;
+            }
+        }
+
+        .product_right {
+
+            .price {
+
+                &__old,
+                &__new {
+                    margin: 0;
+                    text-align: center;
+                }
+            }
+
+            & .__filter {
+
+                .block {
+                    padding: 1rem 0;
+                    p {
+                        display: block;
+                        text-align: center;
+                    }
+
+                    .itemsList {
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
 
     & ._title {
 
@@ -27,6 +86,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        .available {
+            color: green;
+        }
     }
 
     & .price {

@@ -3,6 +3,7 @@ import categories from './categories'
 import price from './price'
 import tabs from './tabs'
 import product from './product'
+import hero from './hero-banner'
 
 export const schemaTypes = [
   image,
@@ -10,4 +11,5 @@ export const schemaTypes = [
   price,
   tabs,
   product,
+  hero
 ]

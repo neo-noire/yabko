@@ -5,9 +5,10 @@
     bottom: 0rem;
     display: flex !important;
     justify-content: center;
-    gap: 1rem;
-    border-bottom: 1px solid $textColor;
+    gap: .5rem;
     padding-bottom: 1rem;
+
+
 
     li {
         width: fit-content;
@@ -31,10 +32,32 @@
             }
         }
     }
+
+    @media (max-width: 950px) {
+        border-bottom: 1px solid $textColor;
+        justify-content: center;
+        overflow-x: scroll;
+        bottom: 1rem;
+
+        ::-webkit-scrollbar {
+            width: 0;
+            height: 1px;
+        }
+
+        li {
+
+            .slider_dot {
+                width: 50px;
+                gap: .2rem;
+            }
+        }
+
+    }
 }
 
 .slider_container {
-    width: 450px;
+    width: 100%;
+
 
     .slider_img {
 

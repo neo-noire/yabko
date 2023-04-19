@@ -38,7 +38,7 @@ export const Card = ({ data, category }) => {
                 <a>
                     <div className='card-link'>
                         <span className='card-title'>
-                            {data?.name} <br /> {data?.filtering && data?.filtering[0]?.value}{data?.filtering && data?.filtering[0]?.shortcut}
+                            {data?.name}  {data?.filtering && data?.filtering[0]?.value}{data?.filtering && data?.filtering[0]?.shortcut}
                         </span>
                     </div>
                 </a>
@@ -53,7 +53,10 @@ export const Card = ({ data, category }) => {
                         <div className="color-palette">
                             {
                                 data?.colors?.map(el =>
-                                    <div onMouseOver={() => setImage({ src: el.color_img[0].image.asset.url, alt: el.color_img[0].alt })} key={el._key} className="color" style={{ backgroundColor: `${el.color_hash}` }}></div>)
+                                    <div
+                                        onMouseOver={() => setImage({ src: el.color_img[0].image.asset.url, alt: el.color_img[0].alt })}
+                                        key={el._key}
+                                        className="color" style={{ backgroundColor: `${el.color_hash}` }}></div>)
                             }
                         </div>
                         <div className="buttons">

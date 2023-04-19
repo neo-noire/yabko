@@ -23,6 +23,8 @@ export const ProductPage = () => {
     )
     const isInCart = useIsItemInCart(data[0]?._id)
     useEffect(() => {
+        setSliderImages([])
+        setColorPicker([])
         data[0]?.colors[0]?.color_img.map(el => setSliderImages(prev => [...prev, el]))
 
         data[0]?.colors.map(el => setColorPicker(prev => [...prev, el]))
@@ -85,18 +87,27 @@ export const ProductPage = () => {
                 </div>
 
                 <section className={s.product__info}>
-                    <div className={s.slider}>
-                        <ImageSlider sliderImages={sliderImages} />
-                    </div>
-                    <div className={s.product_right}>
-
-
+                    <div className={s.mobile_title}>
                         <h1 className={s._title}>
                             {itemSettings.name && itemSettings.name} {itemSettings.type && itemSettings.type[0] + itemSettings.type[1]}  {itemSettings.color && `(${itemSettings.color})`}
                         </h1>
                         <div className={s._availability}>
-                            <div>Available</div>
+                            <div className={s.available}>Available</div>
                             <div>Rating: 5.0</div>
+                        </div>
+                    </div>
+                    <div className={s.slider}>
+                        <ImageSlider sliderImages={sliderImages} />
+                    </div>
+                    <div className={s.product_right}>
+                        <div className={s.desctop_title}>
+                            <h1 className={s._title}>
+                                {itemSettings.name && itemSettings.name} {itemSettings.type && itemSettings.type[0] + itemSettings.type[1]}  {itemSettings.color && `(${itemSettings.color})`}
+                            </h1>
+                            <div className={s._availability}>
+                                <div className={s.available}>Available</div>
+                                <div>Rating: 5.0</div>
+                            </div>
                         </div>
 
                         <div className={s.price}>
