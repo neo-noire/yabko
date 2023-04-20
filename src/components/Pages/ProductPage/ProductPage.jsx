@@ -7,6 +7,7 @@ import { addToCart } from '../../../store/cartSlice/cartSlice'
 import { useSanityFetch } from '../../../hooks/useSanityFetch'
 import { BreadCrumps } from '../../BreadCrumps/BreadCrumps'
 import { useIsItemInCart } from '../../../hooks/useIsItemInCart'
+import { Loader } from '../../Loader/Loader'
 
 export const ProductPage = () => {
     const id = useParams().id
@@ -30,10 +31,11 @@ export const ProductPage = () => {
         data[0]?.colors.map(el => setColorPicker(prev => [...prev, el]))
         const addToOptions = () => {
             const optionsObject = {}
-            data[0]?.filtering?.map(el =>
+            data[0]?.filtering?.map(el => {
                 optionsObject.hasOwnProperty(el.filter_name)
                     ? optionsObject[el.filter_name].push(el)
                     : optionsObject[el.filter_name] = [el]
+            }
             )
 
             setOptions(optionsObject)
@@ -43,7 +45,12 @@ export const ProductPage = () => {
             id: data[0]?._id,
             name: data[0]?.name,
             color: data[0]?.colors[0].color_name,
-            type: [data[0]?.filtering[0].value, data[0]?.filtering[0].shortcut],
+            ...(data[0]?.filtering[0]?.filter_name) && {
+                type: [data[0]?.filtering[0].value, data[0]?.filtering[0].shortcut]
+            },
+            ...(!data[0]?.filtering[0]?.filter_name) && {
+                type: ['', '']
+            },
             price: {
                 new: data[0]?.filtering[0].price[0].new,
                 old: data[0]?.filtering[0].price[0].old
@@ -78,6 +85,16 @@ export const ProductPage = () => {
     const addProductToCart = () => {
         dispatch(addToCart(itemSettings))
     }
+
+    if (loading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
+    }
+
+
 
     return (
         <>
@@ -120,6 +137,7 @@ export const ProductPage = () => {
                         </div>
                         <div className={s.__filter}>
                             {
+                                !options[undefined] &&
                                 Object.entries(options).map(([key, value], i) =>
                                     <div key={key} className={s.block}>
                                         <p>

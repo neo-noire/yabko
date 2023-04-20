@@ -7,11 +7,30 @@ import { AiOutlineMail } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import { Search } from './Search'
 import { HeaderCart } from '../../components/ShopingCart/HeaderCart/HeaderCart'
+import { useSanityFetch } from '../../hooks/useSanityFetch'
 
+const query = `*[_type == "category"]{
+    "items":items[]->.name,
+          category,
+            "id": _id,
+            "category_image": category_image.image.asset->.url
+   }`
+
+const navBar = [{ name: "iPhone", items: [] }, { name: "iPad", items: [] }, { name: "Mac", items: [] }, { name: "Apple Watch", items: [] }, { name: "AirPods", items: [] }, { name: "Accessories", items: [] }]
 
 export const Header = () => {
     const [openMenu, setOpenMenu] = useState(false)
+    const { data, loading, error } = useSanityFetch(query)
+    const [menu, setMenu] = useState(navBar)
 
+    useEffect(() => {
+        const obj = navBar;
+        obj.forEach((element, index) =>
+            obj[index].items = data?.find(el => el.category === element.name)?.items
+        )
+        setMenu(obj)
+    }, [data])
+ 
     return (
         <header>
             <div className={s.container}>
@@ -28,9 +47,11 @@ export const Header = () => {
                         </div>
 
                         <ul className={s.mobileMenuList}>
+
                             <NavLink to={'/iPhone'} onClick={() => setOpenMenu(false)}>
                                 <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/iphone.png' /> iPhone</li>
                             </NavLink>
+
                             <NavLink to={'/iPad'} onClick={() => setOpenMenu(false)}>
                                 <li><img width={23} height={23} src='https://jabko.ua/image/white/catalog/iconburger/ipad.png' /> iPad</li>
                             </NavLink>
@@ -76,68 +97,26 @@ export const Header = () => {
                 </div>
 
                 <nav>
-                    <div className={s.item} >
-                        <NavLink to={'/iPhone'}>
-                            iPhone
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <NavLink to={'/iPhone/iPhone 13 pro Max'}>
-                                <li>iPhone 13 pro Max</li>
-                            </NavLink>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
-                    <div className={s.item}>
-                        <NavLink to={'/iPad'}>
-                            iPad
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
-                    <div className={s.item}>
-                        <NavLink to={'/Mac'}>
-                            Mac
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
-                    <div className={s.item}>
-                        <NavLink to={'/Apple Watch'}>
-                            Apple Watch
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
-                    <div className={s.item}>
-                        <NavLink to={'/AirPods'}>
-                            AirPods
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
-                    <div className={s.item}>
-                        <NavLink to={'/Accessories'}>
-                            Accessories
-                        </NavLink>
-                        <ul className={s.dropdown}>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                            <li>Item item</li>
-                        </ul>
-                    </div>
+                    {
+                        menu && menu.map((el, idx) =>
+                            <div key={el.name} className={s.item} >
+                                <NavLink to={`/${el.name}`}>
+                                    {el.name}
+                                </NavLink>
+                                <ul className={s.dropdown}>
+                                    {
+                                        menu[idx]?.items && menu[idx]?.items.map(item =>
+                                            <NavLink key={item} to={`/${el.name}/${item}`}>
+                                                <li>{item}</li>
+                                            </NavLink>
+                                        )
+                                    }
+
+                                </ul>
+                            </div>
+                        )
+                    }
+
                 </nav>
 
                 <NavLink className={s.logo} to='/'>

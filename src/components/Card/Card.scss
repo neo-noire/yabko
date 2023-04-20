@@ -1,5 +1,8 @@
 @import '../../index.scss';
 
+
+
+
 .card {
     width: 100%;
 
@@ -77,12 +80,13 @@
                 height: 2.5rem;
                 display: flex;
                 align-items: center;
-                justify-content: space-evenly;
+                justify-content: center;
+                gap: 1rem;
                 border-bottom: 1px solid white;
 
                 .color {
-                    height: 20px;
-                    width: 20px;
+                    height: 24px;
+                    width: 24px;
                     border-radius: 50%;
                     cursor: pointer;
                 }
@@ -113,7 +117,57 @@
                 }
 
                 .cart {
+                    position: relative;
                     background-color: $buttonSub;
+                    overflow: hidden;
+
+
+                    @keyframes pulse {
+                        0% {
+                            transform: scale(0);
+                            opacity: 0.8;
+                        }
+
+                        100% {
+                            transform: scale(500%);
+                            opacity: 0;
+
+                        }
+                    }
+
+                    @-webkit-keyframes pulse {
+                        0% {
+                            transform: scale3d(0, 0, 0);
+                            opacity: 0.8;
+                        }
+
+                        100% {
+                            transform: scale3d(5, 5, 5);
+                            opacity: 0;
+
+                        }
+                    }
+                    transition: all .5s ease-in-out;
+                    .circle {
+                        transition: all 1s ease-in-out;
+
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background-color: rgba(255, 255, 255, 0.364);
+                        outline: 1px solid transparent;
+                        
+                        // scale: 0;
+
+                    }
+
+                    &:hover {
+                        .circle {
+                            // scale: 10;
+                            animation: pulse 1.5s ease-in-out infinite;
+                        }
+                    }
+
                 }
             }
         }
@@ -127,7 +181,7 @@
         .card-content {
             .slide-out-block {
                 top: 3.5rem;
-                height: 120px;
+                height: 85px;
                 z-index: 9;
             }
         }

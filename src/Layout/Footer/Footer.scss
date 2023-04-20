@@ -2,10 +2,18 @@
 
 
 .footer {
+    max-width: 1096px;
+    padding: 0 1rem;
+    margin: 0 auto;
     margin-top: 5rem;
     display: flex;
     justify-content: space-around;
     padding-bottom: 3rem;
+
+    @media (max-width: 650px) {
+        flex-direction: column;
+        padding: 0 0 1rem 0;
+    }
 
     ul {
         li {

@@ -7,6 +7,7 @@ import { GiSettingsKnobs } from 'react-icons/gi'
 import { AiOutlineClose } from 'react-icons/ai'
 import { useSanityFetch } from '../../../hooks/useSanityFetch'
 import { BreadCrumps } from '../../BreadCrumps/BreadCrumps'
+import { Loader } from '../../Loader/Loader'
 
 
 export const CategoryPage = () => {
@@ -37,7 +38,11 @@ export const CategoryPage = () => {
             ref.current = [];
             data[0]?.items?.map(el => {
                 ref.current.push(['name', el.name])
-                el.filtering.map(el => array.push(el))
+                el.filtering.map(el => {
+                    el.filter_name &&
+                        array.push(el)
+                }
+                )
             }
             )
             array.map(el => {
@@ -58,6 +63,17 @@ export const CategoryPage = () => {
             : setFilter([...filter, [objKey, item]])
     }
 
+
+    // if(loading) {
+    //     return (
+    //         <div className='loader'>
+    //             <Loader />
+    //         </div>
+    //     )
+    // }
+
+    console.log(filterDropdown);
+
     return (
         <>
             <div className={mobFiltersOpen ? `${s.mobileMenuFilters} ${s.open}` : s.mobileMenuFilters}>
@@ -75,6 +91,7 @@ export const CategoryPage = () => {
                     </Filter>
 
                     {
+                        !filterDropdown[undefined] &&
                         Object.entries(filterDropdown).map(([key, val] = entry) =>
                             <Filter key={key} label={key}>
                                 {
@@ -120,11 +137,17 @@ export const CategoryPage = () => {
                     <h2>Apple {id}</h2>
                     <div className={s.itemsList}>
                         {
-                            data && data[0]?.items?.map(el =>
-                                <div key={el._id} className={s.item}>
-                                    <Card data={el} category={el.category} />
+                            loading
+                                ? <div className='loader'>
+                                    <Loader />
                                 </div>
-                            )
+                                :
+                                data && data[0]?.items?.map((el, idx) =>
+                                    <div key={el._id + idx} className={s.item}>
+                                        <Card data={el} category={el.category} />
+                                    </div>
+                                )
+
                         }
                     </div>
 

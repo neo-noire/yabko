@@ -262,6 +262,7 @@ header {
         }
 
         .footer {
+          
             display: flex;
             flex-direction: column;
 
@@ -294,6 +295,8 @@ header {
                 gap: 1rem;
                 padding: 1rem .5rem;
             }
+
+            border-bottom: 1px solid $textColor;
         }
 
     }

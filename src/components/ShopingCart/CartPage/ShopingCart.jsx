@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BreadCrumps } from '../../BreadCrumps/BreadCrumps'
 import s from './ShopingCart.module.scss'
@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { CiSquareMinus, CiSquarePlus, CiSquareRemove } from 'react-icons/ci'
 import { deleteFromCart, minusOneFromCart, plusOneToCart } from '../../../store/cartSlice/cartSlice'
+import { Loader } from '../../Loader/Loader'
 
 export const ShopingCart = () => {
+    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const cart = useSelector(state => state.cart.items)
@@ -29,14 +31,23 @@ export const ShopingCart = () => {
     }, [cart])
 
     const cartHandler = async () => {
+        setLoading(true)
         try {
             const res = await axios.post(`${import.meta.env.VITE_FETCH_URL}`, cart, { headers: { 'Access-Control-Allow-Origin': '*' } })
             const url = res.data.url
             window.location.assign(url)
+            const timer = setTimeout(() => {
+                setLoading(false)
+            }, 1000);
+            return clearTimeout(timer)
         } catch (error) {
             console.log(error);
+            setLoading(false)
         }
     }
+
+    if (loading) return <div className='loader'><Loader /></div>
+
     return (
         <div className={s.container}>
             <BreadCrumps data={["Cart"]} />

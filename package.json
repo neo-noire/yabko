@@ -21,6 +21,7 @@
     "react-animation-on-scroll": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
+    "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "react-slick": "^0.29.0",

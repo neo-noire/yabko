@@ -7,6 +7,7 @@ import { About } from './About/About'
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { CategorySelect } from './CategorySelect/CategorySelect'
 import { useSanityFetch } from '../../../hooks/useSanityFetch'
+import { Loader } from '../../Loader/Loader'
 
 const fetchQuery = `{"tabs":*[_type == "tabs"]
 {tabs, _id, items[]->{name,_id,"category":category[0]->.category,filtering,colors, image[]{...,image{asset->}},colors[]{color_hash,color_name,color_img[]{alt,image{asset->}}}}}, 
@@ -26,6 +27,14 @@ const fetchQuery = `{"tabs":*[_type == "tabs"]
 export const MainPage = () => {
     const mobile = useMediaQuery('(min-width:600px)');
     const { data, loading, error } = useSanityFetch(fetchQuery)
+
+    if (loading) {
+        return (
+            <div className='loader'>
+                <Loader />
+            </div>
+        )
+    }
 
     return (
         <>

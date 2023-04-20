@@ -33,3 +33,12 @@ ul {
     padding: 0 1rem;
     margin: 0 auto;
 }
+
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40vh;
+    width: 100%;
+    background-color: inherit;
+}
