@@ -28,9 +28,11 @@ export const Header = () => {
         obj.forEach((element, index) =>
             obj[index].items = data?.find(el => el.category === element.name)?.items
         )
+        // setMenu(data.map(el => ))
+
         setMenu(obj)
     }, [data])
- 
+    console.log(data);
     return (
         <header>
             <div className={s.container}>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import './Card.scss'
 import { addToCart } from '../../store/cartSlice/cartSlice'
 import { useIsItemInCart } from '../../hooks/useIsItemInCart'
+import useMousePosition from '../../hooks/useMousePosition'
 
 export const Card = ({ data, category }) => {
     const [children, setChildren] = useState([])
@@ -28,13 +29,18 @@ export const Card = ({ data, category }) => {
     }
 
     const isInCart = useIsItemInCart(data._id)
-    // const handleEvent = (event) => {
-    //     const bounds = event.currentTarget.getBoundingClientRect();
-    //     const x = event.clientX - bounds.left;
-    //     const y = event.clientY - bounds.top;
-    //     // Now x and y are the relative coordinates.
-    //     setChildren([{ x, y }])
-    // }
+
+    const handleEvent = (event) => {
+        const bounds = event.currentTarget.getBoundingClientRect();
+
+        const x = event.clientX - bounds.left;
+        const y = event.clientY - bounds.top;
+        // Now x and y are the relative coordinates.
+        setChildren([{ x, y }])
+
+    }
+
+
     return (
         <div className='card'>
             <div className='card-img'>
@@ -74,19 +80,25 @@ export const Card = ({ data, category }) => {
                                     ? <NavLink to={'/cart'}>
                                         <button className="cart">Go to Cart</button>
                                     </NavLink>
-                                    : <button
+                                    : <div className='cart_box'
                                         onMouseMove={(e) => handleEvent(e)}
+                                        onMouseLeave={() => setChildren(false)}>
 
-                                        // onClick={addToCartHandler}
-                                        className="cart">
-                                        {/* {
+
+                                        <button
+
+                                            onClick={addToCartHandler}
+                                            className="cart">
+                                            Add to Cart</button>
+                                        {
                                             children && children?.map(el =>
-                                                <div key={el.x + el.y} className='circle' style={{ position: "absolute", left: `${el.x - 20}px`, top: `${el.y - 20}px` }}>
+                                                <div key={el.x + el.y} className='circle' style={{ left: `${el.x - 20}px`, top: `${el.y - 20}px` }}>
                                                 </div>)
-                                        } */}
-                                        Add to Cart</button>
+                                        }
+                                    </div>
                             }
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -1,6 +1,28 @@
 @import '../../index.scss';
 
 
+@keyframes increase {
+    0% {
+        scale: 0;
+    }
+
+    100% {
+        scale: 6;
+    }
+}
+
+// @-webkit-keyframes pulse {
+//     0% {
+//         transform: scale(0.7);
+//         opacity: 0.8;
+//     }
+
+//     100% {
+//         transform: scale(1.5);
+//         opacity: 0;
+
+//     }
+// }
 
 
 .card {
@@ -116,56 +138,29 @@
                     }
                 }
 
-                .cart {
+                .cart_box {
                     position: relative;
-                    background-color: $buttonSub;
+
                     overflow: hidden;
-
-
-                    @keyframes pulse {
-                        0% {
-                            transform: scale(0);
-                            opacity: 0.8;
-                        }
-
-                        100% {
-                            transform: scale(500%);
-                            opacity: 0;
-
-                        }
-                    }
-
-                    @-webkit-keyframes pulse {
-                        0% {
-                            transform: scale3d(0, 0, 0);
-                            opacity: 0.8;
-                        }
-
-                        100% {
-                            transform: scale3d(5, 5, 5);
-                            opacity: 0;
-
-                        }
-                    }
-                    transition: all .5s ease-in-out;
-                    .circle {
-                        transition: all 1s ease-in-out;
-
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        background-color: rgba(255, 255, 255, 0.364);
-                        outline: 1px solid transparent;
-                        
-                        // scale: 0;
-
-                    }
 
                     &:hover {
                         .circle {
-                            // scale: 10;
-                            animation: pulse 1.5s ease-in-out infinite;
+                            animation: increase 2s ease-in-out infinite;
                         }
+                    }
+
+                    .circle {
+                        // transition: all 1s ease-in-out;
+                        position: absolute;
+                        padding: 1rem;
+                        border-radius: 50%;
+                        background-color: rgba(255, 255, 255, 0.364);
+                        outline: 1px solid transparent;
+                        // scale: 0;
+                    }
+
+                    .cart {
+                        background-color: $buttonSub;
                     }
 
                 }

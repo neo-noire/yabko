@@ -14,21 +14,20 @@ export const Footer = () => {
             {
                 mobile
                     ? <Filter label='Categories'>
-                        <li>
-                            <NavLink to='/iPhone'>
-                                iPhone
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/iPad'>
-                                iPad
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/Apple Watch'>
-                                Apple Watch
-                            </NavLink>
-                        </li>
+
+                        <NavLink to='/iPhone'>
+                            iPhone
+                        </NavLink>
+
+
+                        <NavLink to='/iPad'>
+                            iPad
+                        </NavLink>
+
+                        <NavLink to='/Apple Watch'>
+                            Apple Watch
+                        </NavLink>
+
                     </Filter>
 
                     : <ul className='products'>
@@ -55,21 +54,19 @@ export const Footer = () => {
                 mobile
                     ?
                     <Filter label='Products'>
-                        <li>
-                            <NavLink to='/iPad'>
-                                iPad
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/Apple Watch'>
-                                Apple Watch
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/iPhone'>
-                                iPhone
-                            </NavLink>
-                        </li>
+
+                        <NavLink to='/iPad'>
+                            iPad
+                        </NavLink>
+
+                        <NavLink to='/Apple Watch'>
+                            Apple Watch
+                        </NavLink>
+
+                        <NavLink to='/iPhone'>
+                            iPhone
+                        </NavLink>
+
                     </Filter>
                     : <ul className="info">
                         <h4> Products</h4>
@@ -95,17 +92,19 @@ export const Footer = () => {
             {
                 mobile
                     ? <Filter label='For contacts and questions'>
-                        <li>
+
+                        <div>
                             <a href='mailto:info@jabko.ua'>
                                 info@jabko.ua
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <a href='tel:0 800 30 777 5'>
                                 0 800 30 777 5
                             </a>
                             (з 9:00 до 22:00)
-                        </li>
+                        </div>
+
                     </Filter>
                     : <ul className="contact">
                         <h4> For contacts and questions</h4>
